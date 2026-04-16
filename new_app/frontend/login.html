@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emplytics - Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --main-bg: #ffffff;
+            --accent: #2563eb;
+            --accent-glow: rgba(37, 99, 235, 0.1);
+            --border: rgba(0, 0, 0, 0.08);
+            --text-main: #0f172a;
+            --text-secondary: #64748b;
+        }
+
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--main-bg);
+            color: var(--text-main);
+            overflow: hidden;
+        }
+
+        .page-wrapper {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .hero-section {
+            flex: 1.2;
+            background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), 
+                        url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 5rem;
+            animation: slideRight 1.2s ease-out;
+        }
+
+        .hero-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            color: #000000;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #1e293b;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .form-section {
+            flex: 1;
+            background-color: var(--main-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem;
+            z-index: 20;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 { 
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem; 
+            font-weight: 800; 
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        p { color: var(--text-secondary); margin-bottom: 2.5rem; font-size: 1rem; }
+
+        .input-group { margin-bottom: 1.25rem; }
+
+        input {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            color: var(--text-main);
+            font-size: 1rem;
+            box-sizing: border-box;
+            outline: none;
+            transition: all 0.2s;
+        }
+        input:focus {
+            border-color: #0f172a;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(15, 23, 42, 0.05);
+        }
+
+        button {
+            width: 100%;
+            padding: 1rem;
+            background: #0f172a;
+            color: white;
+            border: none;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        button:hover { 
+            background: #1e293b;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+
+        .link { margin-top: 2rem; font-size: 0.9rem; color: var(--text-secondary); text-align: center; }
+        .link a { color: #0f172a; text-decoration: none; font-weight: 700; margin-left: 5px; border-bottom: 2px solid transparent; transition: all 0.2s; }
+        .link a:hover { border-bottom-color: #0f172a; }
+
+        /* MODAL */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(4px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 3000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+        .modal-box {
+            background: white;
+            padding: 3rem;
+            border-radius: 1.5rem;
+            border: 1px solid var(--border);
+            width: 90%;
+            max-width: 450px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .modal-title { font-family: 'Outfit', sans-serif; font-size: 1.75rem; margin-bottom: 1rem; color: var(--text-main); }
+        .modal-msg { color: var(--text-secondary); font-size: 1rem; line-height: 1.6; margin-bottom: 2rem; }
+        .modal-btn {
+            background: #0f172a;
+            border: none;
+            padding: 0.75rem 2.5rem;
+            border-radius: 0.75rem;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            width: auto;
+            margin-top: 0;
+            transition: all 0.2s;
+        }
+        .modal-btn:hover { background: #1e293b; transform: scale(1.02); }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="hero-section">
+            <div class="hero-content">
+                <div class="hero-title">Emplytics</div>
+                <div class="hero-subtitle">The intelligent layer for your employee data.<br>Simple, powerful, and now in a clean new look.</div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <div class="container">
+                <h1>Log In</h1>
+                <p>Welcome back! Please enter your details.</p>
+                
+                <div class="input-group">
+                    <input type="email" id="email" placeholder="Email Address" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
+                <button onclick="login()">Enter</button>
+
+                <div class="link">
+                    Don't have an account? <a href="signup.html">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="notificationModal" class="modal-overlay">
+        <div class="modal-box">
+            <div id="modalTitle" class="modal-title"></div>
+            <div id="modalMsg" class="modal-msg"></div>
+            <button class="modal-btn" onclick="closeModal()">Try Again</button>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = window.location.origin.includes('localhost') || window.location.origin.includes('127.0.0.1') 
+            ? "http://127.0.0.1:8000" 
+            : window.location.origin;
+
+        function showNotification(title, msg) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalMsg').innerText = msg;
+            document.getElementById('notificationModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('notificationModal').classList.remove('active');
+        }
+
+        async function login() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (!email || !password) {
+                showNotification("Wait!", "Access denied. Please provide both email and password.");
+                return;
+            }
+
+            try {
+                const res = await fetch(`${API_BASE}/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                if (res.ok) {
+                    const data = await res.json();
+                    localStorage.setItem('user_name', data.name);
+                    localStorage.setItem('user_email', data.email);
+                    window.location.href = "chat.html";
+                } else {
+                    showNotification("Identity Error", "We couldn't verify those credentials. Please check and try again.");
+                }
+            } catch (e) {
+                showNotification("Nexus Offline", "Our server is currently unreachable. Check your network.");
+            }
+        }
+    </script>
+</body>
+</html>

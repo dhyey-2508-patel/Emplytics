@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv
+venv/
+ENV/
+.env
+
+# Databases (We use Supabase now)
+backend/employees.db
+backend/backend/data/app_users.json
+backend/data/app_users.json
+
+# IDEs
+.vscode/
+.idea/
+.gemini/
+.DS_Store

@@ -1,0 +1,276 @@
+{
+    "dhyeyp2508@gmail.com": {
+        "password": "Dhyey@1234",
+        "name": "Dhyey",
+        "chats": {
+            "1775719281897": {
+                "title": "chat_2",
+                "messages": [
+                    {
+                        "role": "user",
+                        "content": "hi",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "assistant",
+                        "content": "Hello! How can I help you with the employee database today?",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "user",
+                        "content": "how many employees are there?",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "bot",
+                        "content": "\ud83d\uded1 You stopped the searching process. Now ask anything else that you need...",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "user",
+                        "content": "how many employees are there?",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "assistant",
+                        "content": "\n\nThe total is **1000**.",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "user",
+                        "content": "HR with higest salary",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "assistant",
+                        "content": "\n\nHere are the details:\n\n| name | salary |\n| --- | --- |\n| Joseph Livingston | 149645 |\n",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "user",
+                        "content": "give me all the details",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "assistant",
+                        "content": "\n\nHere are the details:\n\n| id | name | email | mobile | location | department | salary |\n| --- | --- | --- | --- | --- | --- | --- |\n| 370 | Joseph Livingston | brandon13@example.org | 2664795750 | Delhi | HR | 149645 |\n",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "user",
+                        "content": "good morning",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "assistant",
+                        "content": "Good morning! How can I help you with the employee database today?",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "user",
+                        "content": "show me employees who are from delhi",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "assistant",
+                        "content": "| id | name | email | mobile | location | department | salary |\n| --- | --- | --- | --- | --- | --- | --- |\n| 3 | Erin Hunt | amyweber@example.com | (468)370-1539 | Delhi | Finance | 145184 |\n| 14 | Kimberly Phillips | juliekelley@example.com | +1-845-672-9751 | Delhi | HR | 99237 |\n| 16 | Ariana Adams | rsmith@example.net | (564)265-6834x177 | Delhi | Finance | 90638 |\n| 17 | Tracy Ramirez | kimberly63@example.com | 001-879-747-5472x148 | Delhi | Sales | 139799 |\n| 18 | Jonathan Terrell | nancylove@example.org | +1-903-752-3333x10374 | Delhi | Sales | 117721 |\n| 21 | Dawn Wheeler DVM | jhudson@example.org | (367)956-5894x92070 | Delhi | HR | 64085 |\n| 24 | Lawrence Tucker | ingramtabitha@example.net | (817)387-8776x578 | Delhi | Finance | 144127 |\n| 25 | Marissa Flowers | kevin10@example.org | 4212583280 | Delhi | Sales | 34864 |\n| 29 | Alexandra Jones | chelsea79@example.net | (257)631-7923x88840 | Delhi | HR | 64993 |\n| 43 | Erica Castillo | geraldserrano@example.org | (903)829-5562x2796 | Delhi | Finance | 84320 |\n| 47 | Harold Watson | ystone@example.com | 320-595-3744x0494 | Delhi | IT | 108193 |\n| 54 | Timothy Figueroa | michaelhughes@example.com | 660.529.9996 | Delhi | IT | 43470 |\n| 60 | Douglas Thomas | robertjohnson@example.org | 374-825-9611 | Delhi | IT | 86020 |\n| 66 | Kristi Smith | jmorrison@example.net | 511-661-2845x9985 | Delhi | IT | 95621 |\n| 77 | Samantha Reed | debracarter@example.com | 001-243-252-8530x5718 | Delhi | IT | 63401 |",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "user",
+                        "content": "what was the first question",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "assistant",
+                        "content": "The first question was \"HR with higest salary\" - asking about the HR employee with the highest salary.",
+                        "tool_calls": null
+                    }
+                ],
+                "timestamp": "14:21"
+            },
+            "1775720952563": {
+                "title": "chat_1",
+                "messages": [
+                    {
+                        "role": "user",
+                        "content": "tell me employees with the fake email",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "assistant",
+                        "content": "The employee with a fake email is Anomalous User (email: fake-email-no-at).",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "user",
+                        "content": "show me details of that in table form",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "assistant",
+                        "content": "\n\nHere are the details:\n\n| id | name | email | mobile | location | department | salary |\n| --- | --- | --- | --- | --- | --- | --- |\n| None | Anomalous User | fake-email-no-at | 0000000000 | Testing |  | 999999 |\n",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "user",
+                        "content": "employees who hasn't assigned to any department",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "assistant",
+                        "content": "\n\nHere are the details:\n\n| id | name | email | mobile | location | department | salary |\n| --- | --- | --- | --- | --- | --- | --- |\n| None | Anomalous User | fake-email-no-at | 0000000000 | Testing |  | 999999 |\n",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "user",
+                        "content": "what was my first question to  you?",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "assistant",
+                        "content": "Your first question was \"tell me employees with the fake email.\"",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "user",
+                        "content": "what was my first question to you?",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "assistant",
+                        "content": "Your first question was \"tell me employees with the fake email.\"",
+                        "tool_calls": null
+                    }
+                ],
+                "timestamp": "14:27"
+            }
+        }
+    },
+    "smitpatel19112004@gmail.com": {
+        "password": "Smit@1234",
+        "name": "Smit",
+        "chats": {
+            "1775726712469": {
+                "title": "Hi",
+                "messages": [
+                    {
+                        "role": "user",
+                        "content": "Hi",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "assistant",
+                        "content": "Hello! How can I help you with the employee database today?",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "user",
+                        "content": "Find errors",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "assistant",
+                        "content": "The data audit identified the following errors:\n\n*   **Anomalous User**: Invalid email format and missing department.\n*   **High Earner**: Salary outlier of 5,000,000 in the Sales department.",
+                        "tool_calls": null
+                    }
+                ],
+                "timestamp": "15:02"
+            },
+            "1776078021889": {
+                "title": "Hi",
+                "messages": [
+                    {
+                        "role": "user",
+                        "content": "Hi",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "assistant",
+                        "content": "Hello! How can I help you with the employee data today?",
+                        "tool_calls": null
+                    }
+                ],
+                "timestamp": "16:30"
+            },
+            "1776079754449": {
+                "title": "No. of Employees",
+                "messages": [
+                    {
+                        "role": "user",
+                        "content": "Hi",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "assistant",
+                        "content": "Hello! How can I help you with the employee data today?",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "user",
+                        "content": "How many employees are there?",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "assistant",
+                        "content": "\n\nThe total is **1002**.",
+                        "tool_calls": null
+                    }
+                ],
+                "timestamp": "16:59"
+            }
+        }
+    },
+    "pratham042002@gmail.com": {
+        "password": "Pratham@1234",
+        "name": "Pratham",
+        "chats": {
+            "1776330796545": {
+                "title": "Employee chat",
+                "messages": [
+                    {
+                        "role": "user",
+                        "content": "Hi",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "assistant",
+                        "content": "Hello! How can I help you with the employee data today?",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "user",
+                        "content": "How Many Employees are there?",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "assistant",
+                        "content": "\n\nThe total is **1002**.",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "user",
+                        "content": "employees whos Profession in HR",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "assistant",
+                        "content": "\n\nThe total is **195**.",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "user",
+                        "content": "show me Details of them",
+                        "tool_calls": null
+                    },
+                    {
+                        "role": "assistant",
+                        "content": "| ID | Name | Email | Mobile | Location | Department | Salary |\n|:---|:---|:---|:---|:---|:---|:---|\n| 13 | Jackson Terry | christian57@example.org | (501)265-0217 | Pune | HR | 68593 |\n| 14 | Kimberly Phillips | juliekelley@example.com | +1-845-672-9751 | Delhi | HR | 99237 |\n| 20 | Ariana Payne | hhodge@example.org | 7516658290 | Ahmedabad | HR | 131222 |\n| 21 | Dawn Wheeler DVM | jhudson@example.org | (367)956-5894x92070 | Delhi | HR | 64085 |\n| 22 | Peter Love | smithtracy@example.net | 783.550.6489 | Pune | HR | 133159 |\n| 23 | Matthew Blake | littleaustin@example.org | +1-393-634-4276x062 | Ahmedabad | HR | 92004 |\n| 28 | Kevin Jones | smoore@example.net | 640.970.0730x42281 | Bangalore | HR | 140345 |\n| 29 | Alexandra Jones | chelsea79@example.net | (257)631-7923x88840 | Delhi | HR | 64993 |\n| 35 | John Moran | fernandoaguirre@example.net | 441-653-1958x7716 | Bangalore | HR | 122771 |\n| 36 | Monica Rios | derrickmiller@example.com | (981)510-8992x307 | Pune | HR | 87938 |\n| 38 | Matthew Hawkins | jeffrey27@example.org | 229-596-2555 | Mumbai | HR | 38740 |\n| 57 | Michael Page | lhernandez@example.net | 820-694-8083x72144 | Mumbai | HR | 44027 |\n| 88 | Brandy Reed | nathan79@example.com | (751)995-1209 | Ahmedabad | HR | 119079 |\n| 93 | Grace Carey | lorishields@example.com | 859.200.5583x044 | Delhi | HR | 72618 |\n| 102 | Lee Thompson | brookesmith@example.com | 6482671408 | Mumbai | HR | 31050 |",
+                        "tool_calls": null
+                    }
+                ],
+                "timestamp": "14:48"
+            }
+        }
+    }
+}
