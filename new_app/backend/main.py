@@ -42,7 +42,7 @@ client = AsyncOpenAI(
     api_key=os.getenv("OPENAI_API_KEY"),
     base_url=os.getenv("OPENAI_BASE_URL")
 )
-MODEL = os.getenv("MODEL_NAME")
+MODEL = os.getenv("MODEL_NAME") if os.getenv("MODEL_NAME") else "glm-4.7-flash"
 
 # Temporary OTP store
 otp_store = {}
