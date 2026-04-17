@@ -157,6 +157,7 @@ from tools import run_sql_query, check_data_quality
 async def chat_completion(request: ChatCompletionRequest):
     messages = request.messages
     active_model = request.model or MODEL
+    print(f"DEBUG: Using model: {active_model}")
     tools = [
         {
             "type": "function",
