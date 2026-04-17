@@ -647,8 +647,13 @@
     <div class="layout">
         <!-- SIDEBAR -->
         <div class="sidebar">
-            <div class="new-chat-btn" onclick="createNewChat()">
-                <i class="fas fa-plus"></i> New Chat
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <div class="new-chat-btn" onclick="createNewChat()" style="flex: 1;">
+                    <i class="fas fa-plus"></i> New Chat
+                </div>
+                <div class="footer-btn" onclick="toggleSidebar()" style="padding: 0.75rem; background: rgba(0,0,0,0.03); margin: 0; min-width: 42px; justify-content: center; height: 42px; width: 42px; box-sizing: border-box;">
+                    <i class="fas fa-chevron-left" style="margin: 0;"></i>
+                </div>
             </div>
 
             <div class="sidebar-search">
