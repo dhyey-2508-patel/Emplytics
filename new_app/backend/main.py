@@ -76,6 +76,7 @@ class ChatCompletionRequest(BaseModel):
 @app.post("/signup/send-otp")
 async def send_otp(email: str = Body(..., embed=True)):
     # Check if user already exists
+    email = email.strip().lower()
 
     # Better: let's add a specific check function or use existing ones
     conn = db.get_db_connection()
@@ -116,23 +117,28 @@ async def send_otp(email: str = Body(..., embed=True)):
 
 @app.post("/signup/verify")
 async def verify_signup(data: UserSignup = Body(...), otp: str = Body(..., embed=True)):
-    stored_otp = otp_store.get(data.email)
-    print(f"DEBUG: Verifying for {data.email}. Stored: {stored_otp}, Received: {otp}")
+    email = data.email.strip().lower()
+    stored_otp = otp_store.get(email)
+    print(f"DEBUG: Verifying for {email}. Stored: {stored_otp}, Received: {otp}")
     if stored_otp == otp:
-        success = db.register_user(data.email, data.password, data.name)
-        if success:
+        result = db.register_user(email, data.password, data.name)
+        if result == "SUCCESS":
             # Clear OTP after successful verification
-            otp_store.pop(data.email, None)
+            otp_store.pop(email, None)
             return {"status": "success"}
-        raise HTTPException(status_code=400, detail="User already exists")
+        elif result == "EXISTS":
+            raise HTTPException(status_code=400, detail="User already exists")
+        else:
+            raise HTTPException(status_code=400, detail=f"Database error: {result}")
     raise HTTPException(status_code=400, detail="Invalid OTP")
 
 
 @app.post("/login")
 async def login(data: UserLogin):
-    name = db.validate_login(data.email, data.password)
+    email = data.email.strip().lower()
+    name = db.validate_login(email, data.password)
     if name:
-        return {"status": "success", "name": name, "email": data.email}
+        return {"status": "success", "name": name, "email": email}
     raise HTTPException(status_code=401, detail="Invalid credentials")
 
 @app.get("/chats/{email}")

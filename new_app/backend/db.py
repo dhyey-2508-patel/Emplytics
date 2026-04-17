@@ -17,22 +17,23 @@ def get_db_connection():
     return psycopg2.connect(url, cursor_factory=RealDictCursor)
 
 def register_user(email, password, name):
+    email = email.strip().lower()
     conn = get_db_connection()
     cursor = conn.cursor()
     try:
         cursor.execute("SELECT email FROM users WHERE email = %s", (email,))
         if cursor.fetchone():
-            return False
+            return "EXISTS"
         
         cursor.execute(
             "INSERT INTO users (email, password, name) VALUES (%s, %s, %s)",
             (email, password, name)
         )
         conn.commit()
-        return True
+        return "SUCCESS"
     except Exception as e:
         print(f"Error registering user: {e}")
-        return False
+        return str(e)
     finally:
         cursor.close()
         conn.close()
