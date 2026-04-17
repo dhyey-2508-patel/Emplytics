@@ -292,7 +292,8 @@
                     document.getElementById('otpForm').classList.remove('hidden');
                     showNotification("OTP Sent", "Code delivered to your inbox.");
                 } else {
-                    showNotification("Error", "Could not send OTP.");
+                    const error = await res.json();
+                    showNotification("Hold on", error.detail || "Could not send OTP.");
                 }
             } catch (e) {
                 showNotification("Network Error", "Server unreachable.");
@@ -318,7 +319,8 @@
                     showNotification("Success!", "Account ready. Redirecting...");
                     setTimeout(() => window.location.href = "login.html", 2000);
                 } else {
-                    showNotification("Failed", "Incorrect OTP.");
+                    const error = await res.json();
+                    showNotification("Failed", error.detail || "Incorrect OTP.");
                 }
             } catch (e) {
                 showNotification("Error", "Something went wrong.");
