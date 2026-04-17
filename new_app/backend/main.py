@@ -32,7 +32,7 @@ async def root():
 # Enable CORS for local HTML file development
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["https://emplytics.onrender.com", "http://localhost:5500", "http://127.0.0.1:5500", "http://localhost:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
