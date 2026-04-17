@@ -76,11 +76,7 @@ class ChatCompletionRequest(BaseModel):
 @app.post("/signup/send-otp")
 async def send_otp(email: str = Body(..., embed=True)):
     # Check if user already exists
-    if db.validate_login(email, "") is not None or db.register_user(email, "", "") == False:
-        # Note: register_user with empty password/name is just a check here, 
-        # but let's use a cleaner check.
-        pass
-    
+
     # Better: let's add a specific check function or use existing ones
     conn = db.get_db_connection()
     cursor = conn.cursor()
