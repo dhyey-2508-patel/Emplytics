@@ -101,13 +101,18 @@ async def send_otp(email: str = Body(..., embed=True)):
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/signup/verify")
-async def verify_signup(data: UserSignup, otp: str = Body(..., embed=True)):
-    if otp_store.get(data.email) == otp:
+async def verify_signup(data: UserSignup = Body(...), otp: str = Body(..., embed=True)):
+    stored_otp = otp_store.get(data.email)
+    print(f"DEBUG: Verifying for {data.email}. Stored: {stored_otp}, Received: {otp}")
+    if stored_otp == otp:
         success = db.register_user(data.email, data.password, data.name)
         if success:
+            # Clear OTP after successful verification
+            otp_store.pop(data.email, None)
             return {"status": "success"}
         raise HTTPException(status_code=400, detail="User already exists")
     raise HTTPException(status_code=400, detail="Invalid OTP")
+
 
 @app.post("/login")
 async def login(data: UserLogin):

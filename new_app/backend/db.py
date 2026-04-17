@@ -9,7 +9,12 @@ load_dotenv()
 DATABASE_URL = os.getenv("DATABASE_URL")
 
 def get_db_connection():
-    return psycopg2.connect(DATABASE_URL, cursor_factory=RealDictCursor)
+    # If DATABASE_URL doesn't already have sslmode, we add it for Supabase/Render compatibility
+    url = DATABASE_URL
+    if "sslmode=" not in url:
+        separator = "&" if "?" in url else "?"
+        url += f"{separator}sslmode=require"
+    return psycopg2.connect(url, cursor_factory=RealDictCursor)
 
 def register_user(email, password, name):
     conn = get_db_connection()
@@ -72,23 +77,8 @@ def save_chat(email, chat_id, title, messages):
     cursor = conn.cursor()
     try:
         timestamp = datetime.now().strftime("%H:%M")
-        # Upsert: Update if chat_id already exists for this user, else insert
-        cursor.execute(
-            """
-            INSERT INTO chats (user_email, chat_id, title, messages, timestamp)
-            VALUES (%s, %s, %s, %s, %s)
-            ON CONFLICT (id) DO UPDATE SET 
-                title = EXCLUDED.title,
-                messages = EXCLUDED.messages,
-                timestamp = EXCLUDED.timestamp
-            """,
-            # Note: The ON CONFLICT logic above is a bit tricky if we don't have a unique constraint on chat_id per user.
-            # In PostgreSQL, we can add a unique constraint or use a specific check.
-            # Simplified version: Check if exists first for simplicity across different PG setups
-            (email, chat_id, title, Json(messages), timestamp)
-        )
         
-        # Better upsert if we don't have a unique constraint on chat_id:
+        # Check if chat exists for this user and chat_id
         cursor.execute("SELECT id FROM chats WHERE user_email = %s AND chat_id = %s", (email, chat_id))
         existing = cursor.fetchone()
         
@@ -111,6 +101,7 @@ def save_chat(email, chat_id, title, messages):
     finally:
         cursor.close()
         conn.close()
+
 
 def delete_chat(email, chat_id):
     conn = get_db_connection()

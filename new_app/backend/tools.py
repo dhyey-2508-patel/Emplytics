@@ -8,7 +8,12 @@ load_dotenv()
 DATABASE_URL = os.getenv("DATABASE_URL")
 
 def get_db_connection():
-    return psycopg2.connect(DATABASE_URL, cursor_factory=RealDictCursor)
+    # If DATABASE_URL doesn't already have sslmode, we add it for Supabase/Render compatibility
+    url = DATABASE_URL
+    if "sslmode=" not in url:
+        separator = "&" if "?" in url else "?"
+        url += f"{separator}sslmode=require"
+    return psycopg2.connect(url, cursor_factory=RealDictCursor)
 
 def run_sql_query(query):
     conn = get_db_connection()
