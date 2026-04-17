@@ -97,21 +97,23 @@
             .sidebar-overlay.active { display: block; }
             .resizer { display: none; }
             .layout { padding-top: 60px; }
-            .main-chat { 
-                width: 100% !important; 
-                padding: 1rem !important;
-            }
+            
+            .top-nav { display: none; }
+            
+            .main { width: 100% !important; }
             .chat-container {
-                max-width: 100% !important;
-                padding-bottom: 120px !important;
+                padding: 1rem !important;
+                padding-bottom: 5rem !important;
             }
-            .message { max-width: 90% !important; }
-            .input-area {
-                padding: 10px !important;
+            .message .bubble { max-width: 92% !important; }
+            .input-wrapper {
+                padding: 10px 15px 15px 15px !important;
             }
-            .input-container {
-                width: 100% !important;
-                padding: 10px !important;
+            .welcome-title { font-size: 2.2rem; }
+            .model-block {
+                left: 1rem;
+                bottom: 5rem;
+                width: calc(100% - 2rem);
             }
         }
 
