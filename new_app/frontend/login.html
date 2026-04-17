@@ -110,7 +110,20 @@
 
         p { color: var(--text-secondary); margin-bottom: 2.5rem; font-size: 1rem; }
 
-        .input-group { margin-bottom: 1.25rem; }
+        .input-group { margin-bottom: 1.25rem; position: relative; }
+
+        .toggle-password {
+            position: absolute;
+            right: 1.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+        .toggle-password:hover {
+            color: var(--text-main);
+        }
 
         input {
             width: 100%;
@@ -225,6 +238,7 @@
                 </div>
                 <div class="input-group">
                     <input type="password" id="password" placeholder="Password" required>
+                    <i class="fas fa-eye toggle-password" style="padding-top: 2px;" onclick="togglePasswordVisibility('password', this)"></i>
                 </div>
                 <button onclick="login()">Enter</button>
 
@@ -256,6 +270,19 @@
 
         function closeModal() {
             document.getElementById('notificationModal').classList.remove('active');
+        }
+
+        function togglePasswordVisibility(inputId, icon) {
+            const input = document.getElementById(inputId);
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.remove("fa-eye");
+                icon.classList.add("fa-eye-slash");
+            } else {
+                input.type = "password";
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye");
+            }
         }
 
         async function login() {
