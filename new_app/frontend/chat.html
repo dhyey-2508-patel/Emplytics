@@ -46,10 +46,9 @@
             left: 0;
             width: 100%;
             height: 60px;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
+            background: #ffffff;
             border-bottom: 1px solid var(--border);
-            z-index: 100;
+            z-index: 10000;
             align-items: center;
             padding: 0 1rem;
             justify-content: space-between;
@@ -59,7 +58,6 @@
             display: flex;
             height: 100vh;
             height: 100dvh;
-            backdrop-filter: blur(50px);
             position: relative;
             width: 100%;
         }
@@ -90,55 +88,7 @@
             backdrop-filter: blur(4px);
         }
 
-        @media (max-width: 768px) {
-            .mobile-header { display: flex; }
-            .sidebar {
-                position: fixed;
-                left: 0;
-                top: 0;
-                bottom: 0;
-                transform: translateX(-100%);
-                width: 300px !important;
-                padding: 1.5rem !important;
-                padding-top: 80px !important; /* Ensure content is below mobile header if needed */
-                background: #ffffff !important;
-                backdrop-filter: none !important;
-                border-right: 1px solid var(--border) !important;
-                box-shadow: 20px 0 50px rgba(0,0,0,0.2);
-                z-index: 5000; /* Super high to be on top */
-            }
-            .sidebar * { opacity: 1 !important; visibility: visible !important; }
-            .sidebar.active { transform: translateX(0); }
-            .sidebar-overlay.active { display: block; }
-            .resizer { display: none; }
-            .layout { 
-                padding-top: 60px;
-                height: 100dvh;
-            }
-            
-            .top-nav { display: none; }
-            
-            .main { 
-                width: 100% !important; 
-                height: calc(100dvh - 60px);
-            }
-            .chat-container {
-                padding: 1rem !important;
-                padding-bottom: 2rem !important;
-            }
-            .message .bubble { max-width: 95% !important; }
-            .input-wrapper {
-                padding: 10px 10px 20px 10px !important;
-                background: white;
-            }
-            .welcome-title { font-size: 1.8rem; margin-top: 5vh; }
-            .welcome-subtitle { font-size: 0.9rem; padding: 0 1rem; }
-            .model-block {
-                left: 1rem;
-                bottom: 5.5rem;
-                width: calc(100% - 2rem);
-            }
-        }
+
 
         .sidebar.collapsed {
             width: 0;
@@ -690,14 +640,66 @@
             background: rgba(255, 255, 255, 0.08);
             box-shadow: 0 0 15px var(--accent-glow);
         }
+        @media (max-width: 768px) {
+            .mobile-header { display: flex; }
+            .sidebar {
+                position: fixed;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                transform: translateX(-100%);
+                width: 300px !important;
+                padding: 1.5rem !important;
+                padding-top: 80px !important;
+                background: #ffffff !important;
+                backdrop-filter: none !important;
+                border-right: 1px solid var(--border) !important;
+                box-shadow: 20px 0 50px rgba(0,0,0,0.2);
+                z-index: 5000;
+            }
+            .sidebar * { opacity: 1 !important; visibility: visible !important; }
+            .sidebar.active { transform: translateX(0); }
+            .sidebar-overlay.active { display: block; }
+            .resizer { display: none; }
+            .layout { 
+                padding-top: 60px;
+                height: 100dvh;
+            }
+            
+            .top-nav { display: none !important; }
+            
+            .main { 
+                width: 100% !important; 
+                height: calc(100dvh - 60px);
+            }
+            .chat-container {
+                padding: 1rem !important;
+                padding-bottom: 2rem !important;
+            }
+            .message .bubble { max-width: 95% !important; }
+            .input-wrapper {
+                padding: 10px 10px 20px 10px !important;
+                background: white;
+            }
+            .welcome-title { font-size: 1.8rem; margin-top: 5vh; }
+            .welcome-subtitle { font-size: 0.9rem; padding: 0 1rem; }
+            .model-block {
+                left: 1rem;
+                bottom: 5.5rem;
+                width: calc(100% - 2rem);
+            }
+        }
     </style>
 </head>
 <body>
     <div class="mobile-header">
-        <div style="font-weight: 800; font-size: 1.2rem; display: flex; align-items: center; gap: 10px;">
+        <div style="font-weight: 800; font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">
             <i class="fas fa-users-viewfinder" style="color: var(--accent);"></i> Emplytics
         </div>
-        <i class="fas fa-bars" style="font-size: 1.5rem; cursor: pointer;" onclick="toggleSidebar()"></i>
+        <div style="display: flex; align-items: center; gap: 12px;">
+            <div id="mobileProfileName" onclick="toggleProfile()" style="font-size: 0.75rem; font-weight: 600; background: #f8fafc; padding: 4px 10px; border-radius: 20px; border: 1px solid var(--border); cursor: pointer;">...</div>
+            <i class="fas fa-bars" style="font-size: 1.4rem; cursor: pointer;" onclick="toggleSidebar()"></i>
+        </div>
     </div>
     <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
     <div class="layout">
@@ -864,13 +866,21 @@
         }
 
         document.getElementById('profileName').innerText = userName;
+        if (document.getElementById('mobileProfileName')) {
+            document.getElementById('mobileProfileName').innerText = userName;
+        }
         document.getElementById('welcomeUser').innerText = `${getGreeting()}, ${userName}`;
 
         let showingEmail = false;
         function toggleProfile() {
             showingEmail = !showingEmail;
+            const text = showingEmail ? userEmail : userName;
             const el = document.getElementById('profileName');
-            el.innerText = showingEmail ? userEmail : userName;
+            const mEl = document.getElementById('mobileProfileName');
+            
+            el.innerText = text;
+            if (mEl) mEl.innerText = text;
+            
             el.style.transform = 'scale(0.95)';
             setTimeout(() => el.style.transform = 'scale(1)', 100);
         }
